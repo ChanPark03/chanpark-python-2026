@@ -47,4 +47,31 @@ Python studying repo
 - tuple 튜플  
 - dict 딕셔너리  
 - set 집합  
-- 
+
+### 키워드  
+
+- if, else, elif 조건문 
+- for, while 반복문
+- def 함수 정의
+- class 클래스 정의
+- import 모듈 가져오기
+- return 함수 반환
+- break 반복문 종료
+- continue 반복문 건너뛰기
+- pass 아무것도 하지 않음
+- lambda 익명 함수
+- try, except 예외 처리
+- with 컨텍스트 관리자
+- global 전역 변수 선언
+- nonlocal 중첩 함수에서 외부 변수 선언
+- assert 조건이 참인지 검사
+- is 객체 동일성 검사
+- finally 예외 발생 여부와 상관없이 항상 실행되는 블록
+- || 논리 OR 연산자
+- && 논리 AND 연산자
+- not 논리 NOT 연산자
+- in 멤버십 연산자
+- is 객체 동일성 검사
+- raise 예외 발생
+- yield 제너레이터 함수에서 값을 반환하고 일시 중지
+- return 함수 반환

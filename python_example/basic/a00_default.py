@@ -1,6 +1,8 @@
+"""프레임 객체와 로컬/전역 네임스페이스를 확인하는 예제입니다."""
+
 import sys
 
-frame = sys._getframe
+frame = sys._getframe()
 print("현재 프레임:", frame)
 print("코드 객체:", frame.f_code)
 print("로컬 변수", frame.f_locals)
@@ -12,11 +14,11 @@ print(globals())
 def main():
     a = 123
     b = [3,4,5]
+    print(a,b)
     main_frame = sys._getframe()
     print("main_frame : ", main_frame.f_code.co_name)
     print("local 변수 : ", main_frame.f_locals)
-    print("global 변수 : ", main_frame.f_globals)  
-    
+    print("global 변수 : ", main_frame.f_globals)
 
 if __name__ == "__main__":
     main()
