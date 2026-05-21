@@ -16,7 +16,11 @@ def main():
     
     print("this is ", "python", " class", sep="_", end="")
     print("this is", "python", "class!!", sep="_")
+    print(A())
+    print((type(A())))
+    
+
     
 if __name__ == "__main__":
     main()
-    
+

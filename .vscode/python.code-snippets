@@ -1,7 +1,8 @@
 {
-    "Main guard": {
+    "Python main structure": {
         "scope": "python",
-        "prefix": "main",
+        "prefix": "pymain",
+        "description": "Create a default Python main function structure",
         "body": [
             "def main():",
             "    ${1:pass}",
@@ -9,43 +10,6 @@
             "",
             "if __name__ == \"__main__\":",
             "    main()"
-        ],
-        "description": "Create a main function and __main__ guard"
-    },
-    "Print": {
-        "scope": "python",
-        "prefix": "pr",
-        "body": [
-            "print(${1})"
-        ],
-        "description": "Print a value"
-    },
-    "Function": {
-        "scope": "python",
-        "prefix": "def",
-        "body": [
-            "def ${1:name}(${2}):",
-            "    ${3:pass}"
-        ],
-        "description": "Create a Python function"
-    },
-    "Class": {
-        "scope": "python",
-        "prefix": "class",
-        "body": [
-            "class ${1:Name}:",
-            "    def __init__(self${2}):",
-            "        ${3:pass}"
-        ],
-        "description": "Create a Python class"
-    },
-    "For range": {
-        "scope": "python",
-        "prefix": "forr",
-        "body": [
-            "for ${1:i} in range(${2:10}):",
-            "    ${3:pass}"
-        ],
-        "description": "Create a for loop over range"
+        ]
     }
 }

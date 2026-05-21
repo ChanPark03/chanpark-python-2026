@@ -1,4 +1,11 @@
 {
     "python-envs.defaultEnvManager": "ms-python.python:conda",
-    "python-envs.defaultPackageManager": "ms-python.python:conda"
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
+    "editor.quickSuggestionsDelay": 1,
+    "editor.quickSuggestions": {
+
+        "other": "on",
+        "comments": "on",
+        "strings": "on"
+    }
 }
