@@ -1,0 +1,8 @@
+Hello Python Programming...!hello!!!hello!!!
+hi
+
+hio
+
+hii
+hiiihi
+hiiihi이것은 프린트로 파일을 쓴 데이터이다.
