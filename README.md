@@ -145,4 +145,41 @@ Python studying repo
 - self 는 클래스의 인스턴스 메서드에서 첫 번째 매개변수로 사용되는 예약어입니다. self는 해당 메서드가 호출된 객체를 참조하는 역할을 합니다. self를 사용하여 클래스의 속성과 메서드에 접근할 수 있습니다. 예를 들어, class Person: def __init__(self, name): self.name = name def greet(self): print(f"Hello, my name is {self.name}.")에서 self.name은 해당 객체의 name 속성을 참조합니다. self는 클래스의 인스턴스 메서드에서 반드시 첫 번째 매개변수로 사용되어야 하며, 다른 이름으로 사용할 수도 있지만, 관례적으로 self를 사용하는 것이 일반적입니다.  
 - __init__ 메서드는 클래스의 인스턴스가 생성될 때 자동으로 호출되는 메서드입니다. __init__ 메서드는 클래스의 속성을 초기화하는 역할을 합니다. 예를 들어, class Person: def __init__(self, name, age): self.name = name self.age = age에서 __init__ 메서드는 name과 age 속성을 초기화합니다. __init__ 메서드는 클래스의 인스턴스를 생성할 때 필요한 매개변수를 받아서 객체의 상태를 설정하는 데 사용됩니다. __init__ 메서드는 클래스의 인스턴스가 생성될 때 자동으로 호출되므로, 객체를 생성할 때 필요한 초기화 작업을 수행할 수 있습니다.  
 - __init__ 함수는 생성자가 아니다.  
-- attribute는 클래스의 속성을 나타내며, method는 클래스의 행동을 나타냅니다. attribute는 클래스의 인스턴스에서 데이터를 저장하는 데 사용되며, method는 클래스의 인스턴스에서 특정 동작을 수행하는 데 사용됩니다. 예를 들어, class Person: def __init__(self, name): self.name = name def greet(self): print(f"Hello, my name is {self.name}.")에서 name은 attribute이고, greet는 method입니다. attribute와 method는 객체 지향 프로그래밍에서 중요한 개념으로, 클래스를 정의할 때 함께 사용됩니다.
+- attribute는 클래스의 속성을 나타내며, method는 클래스의 행동을 나타냅니다. attribute는 클래스의 인스턴스에서 데이터를 저장하는 데 사용되며, method는 클래스의 인스턴스에서 특정 동작을 수행하는 데 사용됩니다. 예를 들어, class Person: def __init__(self, name): self.name = name def greet(self): print(f"Hello, my name is {self.name}.")에서 name은 attribute이고, greet는 method입니다. attribute와 method는 객체 지향 프로그래밍에서 중요한 개념으로, 클래스를 정의할 때 함께 사용됩니다.  
+
+### 객체 생성과 속성 저장
+
+- a63_class_student.py에서는 Student 클래스를 만들고 학생의 이름, 국어, 수학, 영어, 과학 점수를 객체의 속성으로 저장합니다. self.name, self.korean 처럼 self를 사용하면 각각의 객체가 자기 자신의 데이터를 따로 보관할 수 있습니다.
+- students 리스트에는 Student 객체 여러 개가 저장됩니다. 반복문에서 student.name, student.korean 처럼 객체의 속성에 접근하여 학생 정보를 출력합니다.
+
+### 인스턴스 메서드와 객체 출력
+
+- a64_class_method.py에서는 클래스 안에 get_sum(), get_average(), to_string() 같은 메서드를 추가하여 객체가 자기 점수를 직접 계산하도록 만듭니다. get_sum()은 네 과목 점수의 합계를 구하고, get_average()는 총점을 4로 나누어 평균을 구합니다.
+- __repr__()은 객체를 출력할 때 보여줄 문자열을 정하는 특수 메서드입니다. print(student)를 실행하면 객체 주소 대신 학생 이름, 점수, 총점, 평균이 보기 좋게 출력됩니다.
+
+### 객체 타입 확인
+
+- a65_isinstance.py에서는 isinstance(객체, 클래스)를 사용하여 어떤 객체가 특정 클래스의 인스턴스인지 확인합니다. isinstance(student, Student)는 student가 Student 객체이면 True를 반환합니다.
+- classroom 리스트에는 Student 객체와 Teacher 객체가 함께 들어 있습니다. 반복문에서 isinstance()로 객체의 종류를 구분한 뒤, Student이면 study(), Teacher이면 teach()를 실행합니다.
+- 파이썬에서는 int, list 같은 기본 자료형도 모두 object를 기반으로 만들어진 객체입니다. 그래서 isinstance(1, object), isinstance([1, 2, 3], object)도 True가 됩니다.
+
+### 특수 메서드와 연산자 오버로딩
+
+- a66_special_method.py에서는 __str__(), __repr__(), __add__(), __sub__(), __mul__(), __truediv__(), __gt__() 같은 특수 메서드를 사용하여 객체의 출력, 사칙연산, 비교 연산을 직접 정의합니다.
+- __add__()는 student1 + student2를 했을 때 두 학생의 총점을 더하도록 만들고, __truediv__()는 / 연산자를 사용했을 때 총점끼리 나누도록 만듭니다.
+- __gt__()는 > 연산자를 정의합니다. 예제에서는 두 Student 객체의 총점을 비교합니다. 비교 대상이 Student가 아니면 "error"를 반환하도록 작성되어 있습니다.
+- self.__aa = "secret key"처럼 이름 앞에 밑줄 두 개를 붙이면 name mangling이 적용되어 외부에서 바로 접근하기 어렵게 됩니다. 완전한 보안 기능은 아니고, 클래스 내부에서 사용하는 값이라는 의미에 가깝습니다.
+
+### 클래스 변수와 클래스 메서드
+
+- a67_class_variable.py의 count와 students는 클래스 변수입니다. 클래스 변수는 각각의 객체가 따로 가지는 값이 아니라 Student 클래스 전체가 공유하는 값입니다.
+- Student.count += 1은 Student 객체가 생성될 때마다 전체 학생 수를 1씩 증가시킵니다. Student.students.append(self)는 새로 생성된 학생 객체 자기 자신을 전체 학생 목록에 추가합니다.
+- @classmethod는 객체가 아니라 클래스에서 직접 호출할 수 있는 메서드를 만들 때 사용합니다. Student.print()는 등록된 학생 수와 학생 목록을 한 번에 출력합니다.
+- 인스턴스 변수는 self.name, self.korean처럼 객체마다 따로 저장되는 값이고, 클래스 변수는 Student.count, Student.students처럼 클래스 전체가 공유하는 값입니다.
+
+### 객체 삭제와 소멸자
+
+- a69_destructor.py에서는 객체가 생성될 때 실행되는 __init__()과 객체가 더 이상 사용되지 않아 파괴될 때 실행되는 __del__()을 확인합니다.
+- a = Test("a")를 실행하면 a 객체가 생성되고 "__ 이 생성 되었습니다" 메시지가 출력됩니다. del c를 실행하면 c라는 이름이 삭제되고, 그 객체를 더 이상 참조하지 않으면 "__ 이 파괴 되었습니다" 메시지가 출력됩니다.
+- 파이썬의 del은 C++의 delete처럼 객체를 직접 삭제하는 명령이 아니라, 변수가 객체를 가리키는 연결을 끊는 명령입니다. 같은 객체를 다른 변수가 아직 참조하고 있다면 __del__()이 바로 실행되지 않을 수 있습니다.
+- C++ 소멸자는 스코프를 벗어날 때 실행 시점이 비교적 명확하지만, 파이썬의 __del__()은 가비지 컬렉션과 참조 상태에 따라 실행 시점이 달라질 수 있습니다. 중요한 자원 정리는 __del__()보다 with 문이나 명시적인 close() 방식이 더 안전합니다.
