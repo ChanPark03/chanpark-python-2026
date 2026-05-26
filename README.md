@@ -138,3 +138,11 @@ Python studying repo
 
 -pypi 계정을 만들어야한다.
 
+## 클래스와 객체 
+
+- 클래스는 객체를 생성하기 위한 청사진입니다. 클래스는 속성과 메서드를 정의하여 객체의 상태와 행동을 나타냅니다. 객체는 클래스의 인스턴스로, 클래스에서 정의된 속성과 메서드를 사용할 수 있습니다. 예를 들어, class Person: def __init__(self, name, age): self.name = name self.age = age def greet(self): print(f"Hello, my name is {self.name} and I am {self.age} years old.")에서 Person은 클래스이고, name과 age는 속성이며, greet는 메서드입니다. person1 = Person("Alice", 30)에서 person1은 Person 클래스의 객체입니다. 객체 지향 프로그래밍에서는 클래스를 사용하여 코드의 재사용성과 유지보수성을 높일 수 있습니다.  
+
+- self 는 클래스의 인스턴스 메서드에서 첫 번째 매개변수로 사용되는 예약어입니다. self는 해당 메서드가 호출된 객체를 참조하는 역할을 합니다. self를 사용하여 클래스의 속성과 메서드에 접근할 수 있습니다. 예를 들어, class Person: def __init__(self, name): self.name = name def greet(self): print(f"Hello, my name is {self.name}.")에서 self.name은 해당 객체의 name 속성을 참조합니다. self는 클래스의 인스턴스 메서드에서 반드시 첫 번째 매개변수로 사용되어야 하며, 다른 이름으로 사용할 수도 있지만, 관례적으로 self를 사용하는 것이 일반적입니다.  
+- __init__ 메서드는 클래스의 인스턴스가 생성될 때 자동으로 호출되는 메서드입니다. __init__ 메서드는 클래스의 속성을 초기화하는 역할을 합니다. 예를 들어, class Person: def __init__(self, name, age): self.name = name self.age = age에서 __init__ 메서드는 name과 age 속성을 초기화합니다. __init__ 메서드는 클래스의 인스턴스를 생성할 때 필요한 매개변수를 받아서 객체의 상태를 설정하는 데 사용됩니다. __init__ 메서드는 클래스의 인스턴스가 생성될 때 자동으로 호출되므로, 객체를 생성할 때 필요한 초기화 작업을 수행할 수 있습니다.  
+- __init__ 함수는 생성자가 아니다.  
+- attribute는 클래스의 속성을 나타내며, method는 클래스의 행동을 나타냅니다. attribute는 클래스의 인스턴스에서 데이터를 저장하는 데 사용되며, method는 클래스의 인스턴스에서 특정 동작을 수행하는 데 사용됩니다. 예를 들어, class Person: def __init__(self, name): self.name = name def greet(self): print(f"Hello, my name is {self.name}.")에서 name은 attribute이고, greet는 method입니다. attribute와 method는 객체 지향 프로그래밍에서 중요한 개념으로, 클래스를 정의할 때 함께 사용됩니다.
