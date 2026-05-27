@@ -259,3 +259,12 @@ Python studying repo
 - `data/test.json`에는 `"abc"`, `"name"`, `"subject"` 같은 키가 들어 있습니다. `data["abc"]`는 최상위 키의 값을 읽고, `data["subject"]["korean"]`은 중첩된 딕셔너리 안의 값을 읽습니다.
 - `a102_yaml_serialization.py`에서는 `yaml.safe_load(f)`를 사용하여 파일 내용을 읽습니다. `safe_load()`는 YAML 데이터를 파이썬 자료형으로 안전하게 변환할 때 사용합니다.
 - 현재 `a102_yaml_serialization.py`의 경로는 `test.json`을 가리키고 있습니다. JSON 문법은 YAML에서도 읽히는 경우가 많기 때문에 예제가 동작할 수 있지만, YAML 예제로 명확히 보이게 하려면 `test.yaml`을 읽도록 경로를 맞추는 것이 좋습니다.
+
+## 로깅과 실행기록 남기기  
+
+- logging 을해줘야 디버깅을 수월하게 할 수 있다 
+
+```python
+import logging 을 통해 파이썬 기본 로깅 기능 사용.  
+```
+
