@@ -5,6 +5,16 @@ __pycache__/
 
 # C extensions
 *.so
+*.o
+*.pyd
+*.dylib
+*.dll
+*.a
+*.lib
+*.exp
+*.pdb
+*.rlib
+*.rmeta
 
 # Distribution / packaging
 .Python
@@ -208,6 +218,26 @@ tempCodeRunnerFile.py
 
 # PyPI configuration file
 .pypirc
+
+# Native extension build artifacts
+python_example/native_extension/**/build/
+python_example/native_extension/**/dist/
+python_example/native_extension/**/*.egg-info/
+python_example/native_extension/**/target/
+python_example/native_extension/**/*.so
+python_example/native_extension/**/*.pyd
+python_example/native_extension/**/*.dylib
+python_example/native_extension/**/*.dll
+python_example/native_extension/**/*.o
+python_example/native_extension/**/*.a
+python_example/native_extension/**/*.lib
+python_example/native_extension/**/*.exp
+python_example/native_extension/**/*.pdb
+python_example/native_extension/**/*.rlib
+python_example/native_extension/**/*.rmeta
+python_example/native_extension/**/*.d
+python_example/native_extension/**/*.whl
+python_example/native_extension/**/.maturin/
 
 # Marimo
 marimo/_static/

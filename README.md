@@ -343,4 +343,7 @@ native app (플랫폼 종속)
 - tauri(rust 기반)
 - pywebview  
 - C++ webview  속도는 가장 빠름.  
-- 
+  
+## binding  
+
+성능 개선을 위해 바인딩을 사용한다  
