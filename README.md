@@ -260,6 +260,53 @@ Python studying repo
 - `a102_yaml_serialization.py`에서는 `yaml.safe_load(f)`를 사용하여 파일 내용을 읽습니다. `safe_load()`는 YAML 데이터를 파이썬 자료형으로 안전하게 변환할 때 사용합니다.
 - 현재 `a102_yaml_serialization.py`의 경로는 `test.json`을 가리키고 있습니다. JSON 문법은 YAML에서도 읽히는 경우가 많기 때문에 예제가 동작할 수 있지만, YAML 예제로 명확히 보이게 하려면 `test.yaml`을 읽도록 경로를 맞추는 것이 좋습니다.
 
+## 함수 고급 문법
+
+### 명령행 인자
+
+- `103_main_argument.py`에서는 `sys.argv`를 사용하여 터미널에서 실행할 때 전달된 인자를 확인합니다. `sys.argv[0]`에는 실행한 파일 이름이 들어가고, 그 뒤부터 사용자가 입력한 값이 순서대로 들어갑니다.
+- `if len(sys.argv) < 2:`는 사용자가 필요한 인자를 넣지 않았는지 검사하는 조건입니다. 인자가 부족하면 `"사용법: 로드할 파일을 명시하시오!"`를 출력하고 `sys.exit()`으로 프로그램을 종료합니다.
+- C언어의 `int main(int argc, char *argv[])`에서 `argc`가 인자 개수, `argv`가 인자 목록을 의미하는 것처럼, 파이썬에서는 `len(sys.argv)`와 `sys.argv`로 비슷한 정보를 확인할 수 있습니다.
+
+### wrapper 함수
+
+- `a101_wrapper_function.py`에서는 함수를 다른 함수로 감싸는 기본 구조를 확인합니다. `simple_rapper(print_hello)`를 호출하면 `print_hello`를 바로 실행하지 않고, 실행 전후에 코드를 추가한 `wrapper` 함수를 만들어 반환합니다.
+- `wrapper()` 안에서는 `"func 실행전 코드..."`를 먼저 출력하고, 전달받은 `func()`를 실행한 뒤, `"func 실행후 코드..."`를 출력합니다. 즉 원래 함수 코드를 고치지 않고 바깥에서 기능을 덧붙이는 구조입니다.
+- 이런 wrapper 구조는 로깅, 실행 시간 측정, 권한 검사, 예외 처리처럼 여러 함수에 공통으로 붙이고 싶은 기능을 만들 때 사용됩니다.
+
+### decorator와 `@`
+
+- `a102_decorator.py`에서는 `@hi("hi")`처럼 값을 받는 데코레이터를 사용합니다. 이 문법은 내부적으로 `print_hello = hi("hi")(print_hello)`처럼 원래 함수를 감싼 새 함수로 바꾸는 것과 비슷합니다.
+- `hi(value)`는 먼저 데코레이터에 전달할 값 `"hi"`를 받고, 안쪽의 `my_decorator(func)`는 감쌀 함수 `print_hello`를 받습니다. 마지막의 `wrapper(*args, **kwargs)`는 실제 함수 호출 시 실행되는 함수입니다.
+- `*args`와 `**kwargs`를 사용하면 원래 함수가 어떤 위치 인자나 키워드 인자를 받더라도 wrapper가 그대로 받아서 `func(*args, **kwargs)`로 전달할 수 있습니다.
+- `@wraps(func)`는 데코레이터를 사용해도 원래 함수의 이름과 설명 정보를 보존합니다. 그래서 `print(print_hello.__name__)`을 실행하면 `wrapper`가 아니라 `print_hello`가 출력됩니다.
+
+### 실행 시간 측정 decorator
+
+- `a103_time_decorator.py`에서는 `runtime_check(10)` 데코레이터를 사용하여 함수를 10번 실행하고 평균 실행 시간을 구합니다.
+- `start_time = time.time()`으로 시작 시간을 기록하고, 반복문에서 `func(*args, **kwargs)`를 여러 번 실행한 뒤, `end_time = time.time()`으로 종료 시간을 기록합니다.
+- `(end_time - start_time) / n`은 전체 실행 시간을 실행 횟수 `n`으로 나눈 평균 실행 시간입니다. `:.3` 또는 `:.3f` 같은 포맷을 사용하면 소수점 자릿수를 조절하여 출력할 수 있습니다.
+- 데코레이터 안에서 `return result`를 해주기 때문에, 실행 시간 측정 기능을 붙여도 원래 함수의 반환값은 그대로 바깥으로 전달됩니다.
+
+### 재귀 함수와 피보나치
+
+- `a80_fibonacci.py`에서는 재귀 함수로 피보나치 수를 계산합니다. `fibonacci(n)`이 자기 자신인 `fibonacci(n-1)`과 `fibonacci(n-2)`를 다시 호출하여 결과를 만듭니다.
+- `n == 1` 또는 `n == 2`일 때 `1`을 반환하는 부분은 재귀가 멈추는 종료 조건입니다. 종료 조건이 없으면 함수가 계속 자기 자신을 호출하다가 오류가 발생합니다.
+- `cnt` 전역 변수는 `fibonacci()` 함수가 몇 번 호출되었는지 세기 위해 사용합니다. 단순 재귀 피보나치는 같은 값을 반복해서 다시 계산하기 때문에 호출 횟수가 매우 빠르게 늘어납니다.
+
+### 캐시와 `lru_cache`
+
+- `a82_lru_cache.py`에서는 `@lru_cache(maxsize=None)`를 사용하여 함수의 계산 결과를 저장합니다. 한 번 계산한 `fibonacci(n)` 결과를 기억해두면, 같은 `n`이 다시 들어왔을 때 함수를 다시 계산하지 않고 저장된 값을 바로 돌려줍니다.
+- `from functools import cache, lru_cache`에서 `cache`는 크기 제한 없이 결과를 저장하는 간단한 캐시이고, `lru_cache`는 최근에 사용한 값을 중심으로 저장하는 캐시입니다.
+- `maxsize=None`을 사용하면 저장 개수 제한 없이 캐시합니다. 피보나치처럼 같은 입력이 반복되는 재귀 함수에서는 캐시를 붙이면 호출 횟수와 실행 시간이 크게 줄어듭니다.
+
+### generator와 `yield`
+
+- `a86_generator.py`에서는 `yield`가 들어간 함수가 generator가 되는 것을 확인합니다. `test()`를 호출하면 함수 내부 코드가 바로 실행되는 것이 아니라 generator 객체가 만들어집니다.
+- `next(generated_func)`를 호출할 때마다 함수가 다음 `yield`까지 실행됩니다. 첫 번째 `next()`에서는 `"test A"`를 출력하고 `0`을 반환한 뒤 멈추며, 두 번째 `next()`에서는 멈춘 위치 다음부터 이어서 `"test B"`를 출력하고 `1`을 반환합니다.
+- 더 이상 `yield`할 값이 없을 때 `next()`를 호출하면 `StopIteration` 예외가 발생합니다. 직접 `next()`를 사용할 때는 `try`, `except StopIteration`으로 끝나는 상황을 처리할 수 있습니다.
+- `for re in test():`처럼 generator를 `for`문에 넣으면 `for`문이 내부에서 자동으로 `next()`를 호출합니다. generator가 끝나면 `StopIteration`을 조용히 처리하고 반복문을 종료합니다.
+
 ## 로깅과 실행기록 남기기  
 
 - logging 을해줘야 디버깅을 수월하게 할 수 있다 
@@ -268,3 +315,32 @@ Python studying repo
 import logging 을 통해 파이썬 기본 로깅 기능 사용.  
 ```
 
+- `a104_logger_example.py`에서는 `logging.basicConfig()`로 로그 출력 방식을 설정합니다. `level=logging.INFO`는 INFO 이상 수준의 로그를 기록한다는 뜻이므로, `logging.debug()` 메시지는 출력되지 않고 `info`, `warning` 메시지는 기록됩니다.
+- `format="%(asctime)s [%(levelname)s] %(message)s"`는 로그에 시간, 로그 레벨, 메시지를 함께 남기는 형식입니다. `datefmt="%Y-%m-%d %H:%M:%S"`는 시간 표시 모양을 정합니다.
+- `filename="logger.log"`를 지정했기 때문에 로그는 화면이 아니라 `logger.log` 파일에 저장됩니다. `encoding="utf-8"`은 한글 로그 메시지가 깨지지 않도록 하기 위한 설정입니다.
+
+## 데이터 분석과 시각화
+
+### CSV 읽기와 matplotlib 그래프
+
+- `a105_matplotlib.py`에서는 `pandas`로 CSV 파일을 읽고, `matplotlib`으로 그래프를 그립니다. `pd.read_csv(csv_path / "ta_20260527093833.csv", skipinitialspace=True)`는 CSV 데이터를 `DataFrame`으로 읽어옵니다.
+- `csv_path = Path(...)`처럼 `pathlib.Path`를 사용하면 폴더 경로와 파일 이름을 `/` 연산자로 이어 붙일 수 있습니다.
+- `df.info()`는 읽어온 데이터의 컬럼 이름, 결측치 여부, 자료형 같은 기본 정보를 출력합니다. CSV에는 `timestamp`, `location`, `average`, `low`, `high` 컬럼이 들어 있습니다.
+- `plt.plot(df['timestamp'], df['average'])`는 날짜(`timestamp`)를 x축, 평균 기온(`average`)을 y축으로 하는 선 그래프를 그립니다. `plt.show()`를 호출하면 그래프 창이 화면에 표시됩니다.
+
+## Flask
+
+native app (플랫폼 종속)
+
+- Windows (.NET, C#)
+- Linux (X11, GTK, Qt, tkinter)
+- Mac (Cocoa/AppKit, SwiftUI, Objective-C, Swift, Mac Catalyst)
+
+일렉트론(chrome)
+
+- web 기술 (html, css, flask)
+- webview2  
+- tauri(rust 기반)
+- pywebview  
+- C++ webview  속도는 가장 빠름.  
+- 
